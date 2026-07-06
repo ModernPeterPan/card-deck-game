@@ -6,6 +6,7 @@ public class Card
   public string Colour { get; }
 
   public Card(string number, string colour)
+  
   {
     Number = number;
     Colour = colour;
