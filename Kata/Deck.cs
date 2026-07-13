@@ -23,9 +23,9 @@ public class Deck
 
   public int CardNumber { get; }
 
-  public Deck(int cardNumber)
+  public Deck()
   {
-    CardNumber = cardNumber;
+    
   }
 
   public void CreateDeck()

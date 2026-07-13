@@ -12,6 +12,7 @@ public class GameController : ControllerBase
     public IActionResult CreateGame()
     {
         _game = new Game();
+        _game.CreateGame();
         return Ok("Game created");
     }
 
@@ -34,5 +35,19 @@ public class GameController : ControllerBase
     {
         _game.RemovePlayer(name);
         return Ok($"Player {name} removed");
+    }
+
+    [HttpPost("start")]
+    public IActionResult StartGame()
+    {
+        _game.StartGame();
+        return Ok("Game started");
+    }
+
+    [HttpGet("player/hand")]
+    public IActionResult GetHand(string name)
+    {
+        var hand = _game.GetPlayerHand(name);
+        return Ok(hand);
     }
 }

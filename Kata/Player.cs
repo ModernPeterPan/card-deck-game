@@ -11,5 +11,4 @@ public class Player
     Name = name;
   }
 
-  public Hand(L)
 }

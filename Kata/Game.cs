@@ -2,37 +2,37 @@ namespace Game;
 
 using Player;
 using Deck;
-
-private List<Player> _players = new();
-private Deck _gameDeck = new();
-private int _turn = 0;
+using Card;
 
 public class Game
 {
+  private List<Player> _players = new();
+  private Deck _gameDeck = new();
+  private int _turn = 0;
 
   public void AddPlayer(string name)
   {
     _players.Add(new Player(name));
   }
 
-// Revérifie ici.
+  // Revérifie ici.
   public void RemovePlayer(string name)
   {
     var player = _players.FirstOrDefault(p => p.Name == name);
     if (player != null)
     {
-        _players.Remove(player);
+      _players.Remove(player);
     }
   }
 
   public void CreateGame()
   {
-    var p1 = new Player("Marcos");
-    var p2 = new Player("Tania");
-    var p3 = new Player("Sandra");
-
     _gameDeck.CreateDeck();
     _gameDeck.CreateShuffleGameDeck();
+  }
+
+  public void StartGame()
+  {
     DealIntialCards();
   }
 
@@ -40,21 +40,21 @@ public class Game
   {
     foreach (var player in _players)
     {
-      player.Hand.Add(DealOneCard());
-      player.Hand.Add(DealOneCard());
+      DealOneCard(player);
+      DealOneCard(player);
     }
   }
 
-  public void DealOneCard()
+  public void DealOneCard(Player player)
   {
     player.Hand.Add(_gameDeck.Draw());
   }
 
-  public List<Card> GetPlayerHand(string name)
-{
+  public List<Card>? GetPlayerHand(string name)
+  {
     return _players
         .FirstOrDefault(p => p.Name == name)
         ?.Hand;
-}
+  }
 
 }
