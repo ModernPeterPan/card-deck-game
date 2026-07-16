@@ -1,8 +1,18 @@
-﻿using Card;
-using Deck;
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var builder = WebApplication.CreateBuilder(args);
 
-// Function Create and delete a game
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Create a Deck
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
